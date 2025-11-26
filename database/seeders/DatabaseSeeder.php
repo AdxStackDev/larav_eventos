@@ -3,6 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Event;
+use App\Models\Category;
+use App\Models\Location;
+use App\Models\Subscription;
+use App\Models\Tag;
+use App\Models\Ticket;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,10 +21,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        // Call UserSeeder to create users with default password
         $this->call(UserSeeder::class);
-
+        $this->call(EventSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(LocationSeeder::class);
+        $this->call(SubscriptionSeeder::class);
+        $this->call(TagSeeder::class);
+        $this->call(TicketSeeder::class);
     }
 }
