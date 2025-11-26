@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Event;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class EventObserver
 {
@@ -13,7 +14,7 @@ class EventObserver
     public function created(Event $event): void
     {
         $event->Slug = Str::slug($event->name);
-        
+        Log::info('Observer::Event created successfully: ' . $event->name);
     }
 
     /**
@@ -21,7 +22,7 @@ class EventObserver
      */
     public function updated(Event $event): void
     {
-        //
+        Log::info('Observer::Event updated successfully: ' . $event->name);
     }
 
     /**
@@ -29,7 +30,7 @@ class EventObserver
      */
     public function deleted(Event $event): void
     {
-        //
+        Log::info('Observer::Event deleted successfully: ' . $event->name);
     }
 
     /**
@@ -37,7 +38,7 @@ class EventObserver
      */
     public function restored(Event $event): void
     {
-        //
+        Log::info('Observer::Event restored successfully: ' . $event->name);
     }
 
     /**
@@ -45,6 +46,6 @@ class EventObserver
      */
     public function forceDeleted(Event $event): void
     {
-        //
+        Log::info('Observer::Event force deleted successfully: ' . $event->name);
     }
 }

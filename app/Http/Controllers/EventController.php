@@ -2,14 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEventRequest;
 use App\Http\Controllers\Controller;
-use App\Models\Event;
+use App\Services\EventService;
 
 class EventController extends Controller
 {
+
+    protected $eventService;
+
+    public function __construct(EventService $eventService)
+    {
+        $this->eventService = $eventService;
+    }
+
     public function index()
     {
-        $events = Event::latest()->limit(5)->get();
+        $events = $this->eventService->getLatestEvents(1);
         return response()->json($events);
+    }
+
+    public function store(StoreEventRequest $request)
+    {
+        $event = $this->eventService->createEvent($request->validated());
+        return response()->json($event, 201);
     }
 }

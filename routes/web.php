@@ -15,3 +15,4 @@ Route::get('users', function () {
 });
 
 Route::get('events', [EventController::class, 'index']);
+Route::post('add_event', [EventController::class, 'store']);
