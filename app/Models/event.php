@@ -30,5 +30,4 @@ class Event extends Authenticatable
         'start_time' => 'datetime',
         'end_time' => 'datetime',
     ];
-    
 }

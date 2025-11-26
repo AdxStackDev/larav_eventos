@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Event;
-use Illuminate\Support\Str;
+use App\Events\GlobalEvent;
 use Illuminate\Support\Facades\Log;
 
 class EventObserver
@@ -13,8 +13,13 @@ class EventObserver
      */
     public function created(Event $event): void
     {
-        $event->Slug = Str::slug($event->name);
-        Log::info('Observer::Event created successfully: ' . $event->name);
+        $event->start_time = '2025-11-11 12:00:00';
+        $event->end_time = '2025-11-11 12:00:00';
+        $event->save();
+        Log::info('Observer::Event created successfully: ' . $event->title);
+
+        // Dispatch the GlobalEvent to trigger listeners
+        GlobalEvent::dispatch($event);
     }
 
     /**
@@ -22,7 +27,7 @@ class EventObserver
      */
     public function updated(Event $event): void
     {
-        Log::info('Observer::Event updated successfully: ' . $event->name);
+        Log::info('Observer::Event updated successfully: ' . $event->title);
     }
 
     /**
@@ -30,7 +35,7 @@ class EventObserver
      */
     public function deleted(Event $event): void
     {
-        Log::info('Observer::Event deleted successfully: ' . $event->name);
+        Log::info('Observer::Event deleted successfully: ' . $event->title);
     }
 
     /**
@@ -38,7 +43,7 @@ class EventObserver
      */
     public function restored(Event $event): void
     {
-        Log::info('Observer::Event restored successfully: ' . $event->name);
+        Log::info('Observer::Event restored successfully: ' . $event->title);
     }
 
     /**
@@ -46,6 +51,6 @@ class EventObserver
      */
     public function forceDeleted(Event $event): void
     {
-        Log::info('Observer::Event force deleted successfully: ' . $event->name);
+        Log::info('Observer::Event force deleted successfully: ' . $event->title);
     }
 }

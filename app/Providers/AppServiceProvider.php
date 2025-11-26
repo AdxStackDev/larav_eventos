@@ -5,8 +5,10 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Event as EventFacade;
 use App\Observers\EventObserver;
 use App\Events\GlobalEvent;
+use App\Listeners\SendEventNotification;
 use App\Models\Event;
 use App\Models\User;
 
@@ -34,5 +36,11 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('update-event', function (User $user, Event $event) {
             return $user->id === $event->user_id;
         });
+
+        // Register event listeners
+        EventFacade::listen(
+            GlobalEvent::class,
+            SendEventNotification::class
+        );
     }
 }

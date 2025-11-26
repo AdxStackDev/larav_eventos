@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Log;
 
 class SendEventNotification
 {
-    
+
     use InteractsWithQueue;
-    
+
     /**
      * Create the event listener.
      */
@@ -25,6 +25,6 @@ class SendEventNotification
      */
     public function handle(GlobalEvent $event): void
     {
-        Log::info("A new Event triggered: " . $event->event->name);
+        Log::info("Listener::A new Event triggered: " . $event->event->title);
     }
 }
