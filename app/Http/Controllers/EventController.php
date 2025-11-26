@@ -18,13 +18,15 @@ class EventController extends Controller
 
     public function index()
     {
-        $events = $this->eventService->getLatestEvents(1);
+        $events = $this->eventService->getLatestEvents(3);
         return response()->json($events);
     }
 
     public function store(StoreEventRequest $request)
     {
-        $event = $this->eventService->createEvent($request->validated());
-        return response()->json($event, 201);
+        if ($request->validated()) {
+            $event = $this->eventService->createEvent($request->validated());
+            return response()->json($event, 201);
+        }
     }
 }

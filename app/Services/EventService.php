@@ -27,7 +27,6 @@ class EventService
 
     public function createEvent(array $data)
     {
-        dd($data);
         return $this->eventRepository->create($data);
     }
 }
