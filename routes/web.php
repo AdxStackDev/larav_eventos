@@ -13,5 +13,6 @@ Route::get('users', function () {
     return response()->json($users);
 });
 
+
 Route::get('events', [EventController::class, 'index']);
 Route::post('add_event', [EventController::class, 'store']);
