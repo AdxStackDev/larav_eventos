@@ -22,4 +22,33 @@ class Subscription extends Authenticatable
         "start_date",
         "expire_date",
     ];
+
+    protected $casts = [
+        'start_date' => 'datetime',
+        'expire_date' => 'datetime',
+    ];
+
+    /**
+     * Get the user that owns the subscription.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the event for the subscription.
+     */
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
+
+    /**
+     * Get the category for the subscription.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -13,9 +13,6 @@ class EventObserver
      */
     public function created(Event $event): void
     {
-        $event->start_time = '2025-11-11 12:00:00';
-        $event->end_time = '2025-11-11 12:00:00';
-        $event->save();
         Log::info('Observer::Event created successfully: ' . $event->title);
 
         // Dispatch the GlobalEvent to trigger listeners

@@ -12,7 +12,7 @@ class Location extends Authenticatable
 {
     use HasFactory, Notifiable, SoftDeletes;
 
-    protected $connective = 'mongodb';
+    protected $connection = 'mongodb';
     protected $collection = 'locations';
 
     protected $fillable = [
@@ -26,4 +26,25 @@ class Location extends Authenticatable
         'timezone',
         'event_id',
     ];
+
+    protected $casts = [
+        'latitude' => 'float',
+        'longitude' => 'float',
+    ];
+
+    /**
+     * Get the events at this location.
+     */
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    /**
+     * Get the tickets for this location.
+     */
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

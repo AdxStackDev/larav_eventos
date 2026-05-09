@@ -20,4 +20,32 @@ class Category extends Authenticatable
         'description',
         'tags',
     ];
+
+    protected $casts = [
+        'tags' => 'array',
+    ];
+
+    /**
+     * Get the events for the category.
+     */
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    /**
+     * Get the tickets for the category.
+     */
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    /**
+     * Get the subscriptions for the category.
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
 }

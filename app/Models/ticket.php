@@ -24,4 +24,28 @@ class Ticket extends Authenticatable
         "category_id",
         "location_id",
     ];
+
+    /**
+     * Get the event that owns the ticket.
+     */
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
+
+    /**
+     * Get the category of the ticket.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get the location of the ticket.
+     */
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 }
