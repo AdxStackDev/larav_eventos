@@ -1,26 +1,61 @@
-*.log
-.DS_Store
-.env
-.env.backup
-.env.production
-.phpactor.json
-.phpunit.result.cache
-/.fleet
-/.idea
-/.nova
-/.phpunit.cache
-/.vscode
-/.zed
-/auth.json
+# Laravel Framework Defaults
+/vendor
 /node_modules
 /public/build
 /public/hot
 /public/storage
 /storage/*.key
 /storage/pail
-/vendor
+/.phpunit.cache
+.phpunit.result.cache
+/auth.json
 Homestead.json
 Homestead.yaml
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Logs and Debugging
+*.log
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+pnpm-debug.log
+cachegrind.out.*
+
+# Databases & Dumps
+*.sqlite
+*.sqlite3
+*.db
+*.sql
+*.sql.gz
+
+# IDE / Editors
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+.phpactor.json
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+
+# Backups & Temporary Files
+*.bak
+*.swp
+*~
+*.tmp
+*.temp
+
+# Custom App Folders
 /notes
 /docs
