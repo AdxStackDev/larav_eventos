@@ -22,11 +22,36 @@ class EventService
      */
     public function getLatestEvents(int $limit = 5)
     {
-        return Event::latest()->limit($limit)->get();
+        return Event::with(['user', 'category', 'location'])
+            ->latest()
+            ->limit($limit)
+            ->get();
+    }
+
+    /**
+     * Get event with all relationships.
+     *
+     * @param string $id
+     * @return Event|null
+     */
+    public function getEventWithRelations($id)
+    {
+        return Event::with(['user', 'category', 'location', 'tickets', 'subscriptions'])
+            ->find($id);
     }
 
     public function createEvent(array $data)
     {
         return $this->eventRepository->create($data);
+    }
+
+    public function updateEvent($id, array $data)
+    {
+        return $this->eventRepository->update($data, $id);
+    }
+
+    public function deleteEvent($id)
+    {
+        return $this->eventRepository->delete($id);
     }
 }

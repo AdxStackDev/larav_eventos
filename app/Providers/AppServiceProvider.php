@@ -19,9 +19,40 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Event Repository
         $this->app->bind(
             \App\Repositories\Interfaces\EventRepositoryInterface::class,
             \App\Repositories\EventRepository::class
+        );
+
+        // Ticket Repository
+        $this->app->bind(
+            \App\Repositories\Interfaces\TicketRepositoryInterface::class,
+            \App\Repositories\TicketRepository::class
+        );
+
+        // Subscription Repository
+        $this->app->bind(
+            \App\Repositories\Interfaces\SubscriptionRepositoryInterface::class,
+            \App\Repositories\SubscriptionRepository::class
+        );
+
+        // Category Repository
+        $this->app->bind(
+            \App\Repositories\Interfaces\CategoryRepositoryInterface::class,
+            \App\Repositories\CategoryRepository::class
+        );
+
+        // Location Repository
+        $this->app->bind(
+            \App\Repositories\Interfaces\LocationRepositoryInterface::class,
+            \App\Repositories\LocationRepository::class
+        );
+
+        // Tag Repository
+        $this->app->bind(
+            \App\Repositories\Interfaces\TagRepositoryInterface::class,
+            \App\Repositories\TagRepository::class
         );
     }
 
